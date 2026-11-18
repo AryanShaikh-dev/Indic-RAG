@@ -1,0 +1,80 @@
+{
+  "test_id": "T9_groundedness",
+  "status": "NEWLY EXECUTED",
+  "environment": {
+    "timestamp": "2026-11-18T21:15:54",
+    "git_commit": "3eb07d3",
+    "python": "3.12.2",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "cpu": "AMD Ryzen 7 7445HS (6C/12T)",
+    "ram_gb": 15.3,
+    "packages": {
+      "torch": "2.13.0",
+      "sentence-transformers": "5.7.0",
+      "transformers": "5.15.0",
+      "qdrant-client": "1.19.0",
+      "groq": "1.6.0",
+      "numpy": "2.5.2",
+      "scipy": "1.18.0",
+      "jiwer": "4.0.0",
+      "flask": "3.1.3"
+    },
+    "device": "api",
+    "torch_threads": 6
+  },
+  "design": "T9 — Groundedness-check evaluation on real production answers (from T8, config A_production).\n\nLabelled pairs (labels by construction):\n  P  (grounded)   : answer + the context it was generated from\n  N1 (ungrounded) : answer + context of a random other query\n  N2 (ungrounded, hard): answer + context of the most similar other query (e5 query-embedding cosine)\nMethods:\n  prod_cosine   : src.core.guardrails.check_groundedness (unchanged; production threshold 0.75)\n  sent_maxsim   : audit method — each answer sentence ('query: ') vs each chunk ('passage: '); score = min over sentences of max sim\n  llm_judge     : openai/gpt-oss-120b, reasoning low, verdict SUPPORTED / PARTIALLY_SUPPORTED / NOT_SUPPORTED (1 / 0.5 / 0)\nAlso: llm_judge correctness of P answers vs the (machine-translated) reference answer.\nCaveat: P label assumes the generator used its context; the judge's verdicts on P estimate how often that fails.\nUsage: .venv/Scripts/python audit/scripts/t9_groundedness.py\n",
+  "n_answers": 82,
+  "n_pairs": 102,
+  "judge_model": "openai/gpt-oss-120b",
+  "results": {
+    "prod_cosine": {
+      "AUROC_P_vs_N1_random": 0.9982,
+      "mean_score": {
+        "P": 0.92,
+        "N1": 0.7589
+      },
+      "pass_rate_pct_at_0.75_P": 100.0,
+      "pass_rate_ci95_P": [
+        100.0,
+        100.0
+      ],
+      "pass_rate_pct_at_0.75_N1": 55.0,
+      "pass_rate_ci95_N1": [
+        35.0,
+        75.0
+      ]
+    },
+    "sent_maxsim": {
+      "AUROC_P_vs_N1_random": 0.9848,
+      "mean_score": {
+        "P": 0.8609,
+        "N1": 0.7487
+      }
+    },
+    "llm_judge": {
+      "AUROC_P_vs_N1_random": 0.9634,
+      "mean_score": {
+        "P": 0.8963,
+        "N1": 0.0
+      },
+      "P_verdict_dist_pct": {
+        "SUPPORTED": 86.6,
+        "PARTIALLY_SUPPORTED": 6.1,
+        "NOT_SUPPORTED": 7.3
+      },
+      "P_fully_supported_ci95": [
+        78.0,
+        93.9
+      ],
+      "N1_judged_supported_pct_should_be_near_0": 0.0
+    }
+  },
+  "judge_calls": 102,
+  "judge_latency_ms_median": 574.2867999979353,
+  "api_events": [],
+  "caveats": [
+    "Judge (gpt-oss-120b) is the same model family as the generator (gpt-oss-20b): possible leniency bias.",
+    "Judge verdicts were not validated by a human annotator; an AI spot-check is recorded separately.",
+    "Answers come from 100 MS MARCO-XI validation queries; n is small, see CIs."
+  ]
+}

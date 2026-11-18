@@ -1,0 +1,46 @@
+a_wins,b_wins,baseline,baseline_pct,ci_high_pp,ci_low_pp,delta_pp,metric,p_value,slice,system,system_pct,test
+63,27,e5_small,31.53,,,-11.46,Hit@1,0.00018775579617929893,DS1-test,bm25,20.06,McNemar exact
+77,12,e5_small,73.89,,,-20.7,Hit@5,9.03747673906413e-13,DS1-test,bm25,53.18,McNemar exact
+,,e5_small,48.82,-11.55,-20.39,-15.72,MRR@10,0.0,DS1-test,bm25,33.1,paired bootstrap (2000)
+98,2,e5_small,31.53,,,-30.57,Hit@1,7.969072864542661e-27,DS1-test,minilm_l6_en,0.96,McNemar exact
+224,2,e5_small,73.89,,,-70.7,Hit@5,4.757427808871687e-64,DS1-test,minilm_l6_en,3.18,McNemar exact
+,,e5_small,48.82,-42.75,-51.24,-46.86,MRR@10,0.0,DS1-test,minilm_l6_en,1.97,paired bootstrap (2000)
+67,23,e5_small,31.53,,,-14.01,Hit@1,3.7950491781678e-06,DS1-test,para_mminilm_l12,17.52,McNemar exact
+90,12,e5_small,73.89,,,-24.84,Hit@5,6.125402762201369e-16,DS1-test,para_mminilm_l12,49.04,McNemar exact
+,,e5_small,48.82,-14.01,-22.96,-18.37,MRR@10,0.0,DS1-test,para_mminilm_l12,30.46,paired bootstrap (2000)
+20,34,e5_small,31.53,,,4.46,Hit@1,0.0759047294891014,DS1-test,e5_base,35.99,McNemar exact
+17,19,e5_small,73.89,,,0.64,Hit@5,0.8679394004284404,DS1-test,e5_base,74.52,McNemar exact
+,,e5_small,48.82,5.84,-0.05,2.85,MRR@10,0.051,DS1-test,e5_base,51.67,paired bootstrap (2000)
+36,18,e5_small,31.53,,,-5.73,Hit@1,0.01983432672806828,DS1-test,rrf_bm25_e5small,25.8,McNemar exact
+41,16,e5_small,73.89,,,-7.96,Hit@5,0.001263559472435463,DS1-test,rrf_bm25_e5small,65.92,McNemar exact
+,,e5_small,48.82,-2.83,-9.61,-6.14,MRR@10,0.002,DS1-test,rrf_bm25_e5small,42.69,paired bootstrap (2000)
+439,119,e5_small,31.45,,,-14.82,Hit@1,4.649245094587396e-44,DSV-test,bm25,16.63,McNemar exact
+683,82,e5_small,70.31,,,-27.84,Hit@5,7.861970460810465e-119,DSV-test,bm25,42.47,McNemar exact
+,,e5_small,47.36,-18.21,-21.46,-19.78,MRR@10,0.0,DSV-test,bm25,27.58,paired bootstrap (2000)
+672,4,e5_small,31.45,,,-30.94,Hit@1,5.534165901853694e-194,DSV-test,minilm_l6_en,0.51,McNemar exact
+1498,5,e5_small,70.31,,,-69.15,Hit@5,0.0,DSV-test,minilm_l6_en,1.16,McNemar exact
+,,e5_small,47.36,-44.94,-48.23,-46.55,MRR@10,0.0,DSV-test,minilm_l6_en,0.8,paired bootstrap (2000)
+472,116,e5_small,31.45,,,-16.49,Hit@1,7.067875636444023e-52,DSV-test,para_mminilm_l12,14.96,McNemar exact
+765,72,e5_small,70.31,,,-32.1,Hit@5,4.6266012696871636e-147,DSV-test,para_mminilm_l12,38.21,McNemar exact
+,,e5_small,47.36,-20.94,-24.38,-22.62,MRR@10,0.0,DSV-test,para_mminilm_l12,24.74,paired bootstrap (2000)
+174,200,e5_small,31.45,,,1.2,Hit@1,0.19604152969692373,DSV-test,e5_base,32.65,McNemar exact
+110,115,e5_small,70.31,,,0.23,Hit@5,0.7897969502669107,DSV-test,e5_base,70.54,McNemar exact
+,,e5_small,47.36,2.14,-0.11,1.05,MRR@10,0.084,DSV-test,e5_base,48.4,paired bootstrap (2000)
+255,105,e5_small,31.45,,,-6.95,Hit@1,1.5771713460258098e-15,DSV-test,rrf_bm25_e5small,24.5,McNemar exact
+324,93,e5_small,70.31,,,-10.7,Hit@5,5.003341757434249e-31,DSV-test,rrf_bm25_e5small,59.61,McNemar exact
+,,e5_small,47.36,-7.17,-9.75,-8.42,MRR@10,0.0,DSV-test,rrf_bm25_e5small,38.94,paired bootstrap (2000)
+667,0,e5_small,31.13,,,-30.89,Hit@1,3.266050441575651e-201,DSV-test-EN,bm25,0.23,McNemar exact
+1454,0,e5_small,67.86,,,-67.35,Hit@5,0.0,DSV-test-EN,bm25,0.51,McNemar exact
+,,e5_small,46.19,-44.05,-47.44,-45.83,MRR@10,0.0,DSV-test-EN,bm25,0.37,paired bootstrap (2000)
+664,4,e5_small,31.13,,,-30.57,Hit@1,1.3508154693139755e-191,DSV-test-EN,minilm_l6_en,0.56,McNemar exact
+1449,2,e5_small,67.86,,,-67.02,Hit@5,0.0,DSV-test-EN,minilm_l6_en,0.83,McNemar exact
+,,e5_small,46.19,-43.71,-47.18,-45.53,MRR@10,0.0,DSV-test-EN,minilm_l6_en,0.66,paired bootstrap (2000)
+453,182,e5_small,31.13,,,-12.55,Hit@1,1.3422563848139701e-27,DSV-test-EN,para_mminilm_l12,18.57,McNemar exact
+655,207,e5_small,67.86,,,-20.75,Hit@5,6.965807985353995e-55,DSV-test-EN,para_mminilm_l12,47.11,McNemar exact
+,,e5_small,46.19,-13.82,-17.68,-15.76,MRR@10,0.0,DSV-test-EN,para_mminilm_l12,30.44,paired bootstrap (2000)
+250,207,e5_small,31.13,,,-1.99,Hit@1,0.04933280117233233,DSV-test-EN,e5_base,29.13,McNemar exact
+212,196,e5_small,67.86,,,-0.74,Hit@5,0.45775896115748355,DSV-test-EN,e5_base,67.11,McNemar exact
+,,e5_small,46.19,0.31,-2.47,-1.1,MRR@10,0.126,DSV-test-EN,e5_base,45.09,paired bootstrap (2000)
+307,4,e5_small,31.13,,,-14.03,Hit@1,1.8568621439080958e-85,DSV-test-EN,rrf_bm25_e5small,17.09,McNemar exact
+392,1,e5_small,67.86,,,-18.11,Hit@5,3.9060511089936164e-116,DSV-test-EN,rrf_bm25_e5small,49.75,McNemar exact
+,,e5_small,46.19,-15.44,-17.25,-16.34,MRR@10,0.0,DSV-test-EN,rrf_bm25_e5small,29.86,paired bootstrap (2000)

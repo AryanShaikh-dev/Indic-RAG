@@ -1,0 +1,60 @@
+{"id":"o01","lang":"hi","type":"chitchat","text":"आप कैसे हैं?"}
+{"id":"o02","lang":"hi","type":"chitchat","text":"मुझे एक चुटकुला सुनाओ।"}
+{"id":"o03","lang":"hi","type":"personal","text":"मेरा नाम क्या है?"}
+{"id":"o04","lang":"hi","type":"realtime","text":"आज दिल्ली में मौसम कैसा है?"}
+{"id":"o05","lang":"hi","type":"realtime","text":"आज सेंसेक्स कितने अंक पर बंद हुआ?"}
+{"id":"o06","lang":"hi","type":"realtime","text":"कल के आईपीएल मैच में कौन जीता?"}
+{"id":"o07","lang":"hi","type":"india_trivia","text":"विराट कोहली ने कितने टेस्ट शतक बनाए हैं?"}
+{"id":"o08","lang":"hi","type":"india_trivia","text":"भारत के वर्तमान प्रधानमंत्री कौन हैं?"}
+{"id":"o09","lang":"hi","type":"india_trivia","text":"गोवा में सबसे अच्छे समुद्र तट कौन से हैं?"}
+{"id":"o10","lang":"hi","type":"coding","text":"पायथन में लिस्ट को कैसे सॉर्ट करते हैं?"}
+{"id":"o11","lang":"hi","type":"personal","text":"क्या आप मेरे लिए एक जन्मदिन की कविता लिख सकते हैं?"}
+{"id":"o12","lang":"hi","type":"realtime","text":"अभी समय क्या हुआ है?"}
+{"id":"o13","lang":"hi","type":"india_trivia","text":"चंद्रयान तीन कब लॉन्च हुआ था?"}
+{"id":"o14","lang":"hi","type":"personal","text":"मुझे आज रात के खाने में क्या बनाना चाहिए?"}
+{"id":"o15","lang":"hi","type":"india_trivia","text":"हैकर हाउस गोवा कहाँ आयोजित होता है?"}
+{"id":"o16","lang":"hi","type":"chitchat","text":"क्या तुम इंसान हो?"}
+{"id":"o17","lang":"hi","type":"realtime","text":"आज पेट्रोल का भाव क्या है?"}
+{"id":"o18","lang":"hi","type":"coding","text":"जावास्क्रिप्ट में प्रॉमिस क्या होता है?"}
+{"id":"o19","lang":"hi","type":"india_trivia","text":"शाहरुख खान की अगली फिल्म कौन सी है?"}
+{"id":"o20","lang":"hi","type":"personal","text":"मेरे फोन की बैटरी जल्दी क्यों खत्म होती है?"}
+{"id":"o21","lang":"en","type":"chitchat","text":"How are you doing today?"}
+{"id":"o22","lang":"en","type":"chitchat","text":"Tell me a joke about programmers."}
+{"id":"o23","lang":"en","type":"personal","text":"What is my name?"}
+{"id":"o24","lang":"en","type":"realtime","text":"What is the weather in Mumbai right now?"}
+{"id":"o25","lang":"en","type":"realtime","text":"Who won yesterday's IPL match?"}
+{"id":"o26","lang":"en","type":"india_trivia","text":"How many test centuries has Virat Kohli scored?"}
+{"id":"o27","lang":"en","type":"india_trivia","text":"Who is the current Chief Minister of Goa?"}
+{"id":"o28","lang":"en","type":"coding","text":"How do I reverse a linked list in Python?"}
+{"id":"o29","lang":"en","type":"personal","text":"Write a birthday poem for my sister."}
+{"id":"o30","lang":"en","type":"realtime","text":"What is the Nifty 50 index at today?"}
+{"id":"o31","lang":"en","type":"india_trivia","text":"When did Chandrayaan 3 land on the moon?"}
+{"id":"o32","lang":"en","type":"coding","text":"Explain React hooks with an example."}
+{"id":"o33","lang":"en","type":"personal","text":"Should I take the job offer in Bangalore or Pune?"}
+{"id":"o34","lang":"en","type":"chitchat","text":"Are you conscious?"}
+{"id":"o35","lang":"en","type":"realtime","text":"What time is it in Delhi now?"}
+{"id":"o36","lang":"en","type":"india_trivia","text":"Where is Hacker House Goa held?"}
+{"id":"o37","lang":"en","type":"coding","text":"What is the difference between TCP and UDP?"}
+{"id":"o38","lang":"en","type":"personal","text":"Recommend a movie for tonight."}
+{"id":"o39","lang":"en","type":"realtime","text":"What is the price of petrol in Pune today?"}
+{"id":"o40","lang":"en","type":"india_trivia","text":"Who won the 2024 Lok Sabha election in Varanasi?"}
+{"id":"o41","lang":"hinglish","type":"chitchat","text":"Aap kaise ho?"}
+{"id":"o42","lang":"hinglish","type":"chitchat","text":"Ek joke sunao na."}
+{"id":"o43","lang":"hinglish","type":"personal","text":"Mera naam kya hai?"}
+{"id":"o44","lang":"hinglish","type":"realtime","text":"Aaj Delhi ka weather kaisa hai?"}
+{"id":"o45","lang":"hinglish","type":"realtime","text":"Kal ka IPL match kisne jeeta?"}
+{"id":"o46","lang":"hinglish","type":"india_trivia","text":"Virat Kohli ne kitne test centuries banaye hain?"}
+{"id":"o47","lang":"hinglish","type":"coding","text":"Python mein list sort kaise karte hain?"}
+{"id":"o48","lang":"hinglish","type":"personal","text":"Aaj dinner mein kya banau?"}
+{"id":"o49","lang":"hinglish","type":"realtime","text":"Abhi time kya hua hai?"}
+{"id":"o50","lang":"hinglish","type":"india_trivia","text":"Goa ke best beaches kaunse hain?"}
+{"id":"o51","lang":"hinglish","type":"coding","text":"JavaScript mein promise kya hota hai?"}
+{"id":"o52","lang":"hinglish","type":"personal","text":"Meri behen ke liye birthday poem likho."}
+{"id":"o53","lang":"hinglish","type":"realtime","text":"Aaj petrol ka rate kya hai?"}
+{"id":"o54","lang":"hinglish","type":"india_trivia","text":"Chandrayaan 3 kab launch hua tha?"}
+{"id":"o55","lang":"hinglish","type":"chitchat","text":"Kya tum insaan ho?"}
+{"id":"o56","lang":"hinglish","type":"personal","text":"Mere phone ki battery jaldi kyun khatam hoti hai?"}
+{"id":"o57","lang":"hinglish","type":"india_trivia","text":"Hacker House Goa kahan hota hai?"}
+{"id":"o58","lang":"hinglish","type":"coding","text":"TCP aur UDP mein kya difference hai?"}
+{"id":"o59","lang":"hinglish","type":"realtime","text":"Sensex aaj kitne pe band hua?"}
+{"id":"o60","lang":"hinglish","type":"personal","text":"Bangalore wali job lu ya Pune wali?"}

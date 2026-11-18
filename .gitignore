@@ -3,6 +3,7 @@
 
 # Python virtual environment
 .venv/
+.venv*/
 env/
 venv/
 
@@ -24,6 +25,7 @@ chroma_db/
 # Benchmark artifacts and raw output files
 benchmark_artifacts/
 *.txt
+!requirements.txt
 
 # IDE / OS files
 .vscode/

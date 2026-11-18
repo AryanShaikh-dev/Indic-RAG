@@ -1,0 +1,150 @@
+{
+  "test_id": "T10_api",
+  "status": "NEWLY EXECUTED",
+  "environment": {
+    "timestamp": "2026-11-18T21:30:22",
+    "git_commit": "3eb07d3",
+    "python": "3.12.2",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "cpu": "AMD Ryzen 7 7445HS (6C/12T)",
+    "ram_gb": 15.3,
+    "packages": {
+      "torch": "2.13.0",
+      "sentence-transformers": "5.7.0",
+      "transformers": "5.15.0",
+      "qdrant-client": "1.19.0",
+      "groq": "1.6.0",
+      "numpy": "2.5.2",
+      "scipy": "1.18.0",
+      "jiwer": "4.0.0",
+      "flask": "3.1.3"
+    },
+    "device": "cpu",
+    "torch_threads": 6
+  },
+  "design": "T10 — Real HTTP benchmark of the UNMODIFIED production Flask app (api.py).\n\nThe app runs from a scratch copy of the working tree (api.py, src/, frontend/, assets/, qdrant DB copy) so that\napi.py's startup lock-file deletion cannot touch the repository. A launcher injects GROQ_API_KEY only and removes\nQDRANT_URL/QDRANT_API (Cloud unavailable) -> local embedded Qdrant. Server runs on CPU (.venv), Flask dev server\nexactly as `python api.py`.\n\nPhases\n  1  paced sequential text  : 50 DS1-test answerable + 10 hand-written off-topic queries, 1 request / 8 s\n  2  burst, 4 concurrent    : 40 other DS1-test queries, no pacing (shows rate-limit + shared-logger behaviour)\n  3  paced sequential voice : 20 FLEURS hi_in test clips via /api/query/audio (full STT path), 1 request / 8 s\nUsage: .venv/Scripts/python audit/scripts/t10_api.py <scratch_dir>\n",
+  "results": {
+    "server_startup_s": 41.0,
+    "server_rss_mb_after_startup": 1466.0,
+    "server_rss_mb_after_phase1": 2178.5,
+    "server_rss_mb_end": 2178.5,
+    "phase1_paced_text": {
+      "n": 100,
+      "status_counts": {
+        "refused_off_topic": 5,
+        "answered": 91,
+        "refused_not_grounded": 4
+      },
+      "http_counts": {
+        "200": 100
+      },
+      "client_rtt_ms_all": {
+        "n": 100,
+        "mean": 703.289,
+        "median": 733.959,
+        "std": 252.22,
+        "min": 64.393,
+        "max": 1616.337,
+        "p95": 1041.725,
+        "p99": null
+      },
+      "client_rtt_ms_answered": {
+        "n": 91,
+        "mean": 741.982,
+        "median": 749.883,
+        "std": 213.826,
+        "min": 319.326,
+        "max": 1616.337,
+        "p95": null,
+        "p99": null
+      },
+      "client_rtt_ms_refused_off_topic": {
+        "n": 5,
+        "mean": 78.591,
+        "median": 66.761,
+        "std": 18.737,
+        "min": 64.393,
+        "max": 107.393,
+        "p95": null,
+        "p99": null
+      },
+      "client_rtt_ms_refused_not_grounded": {
+        "n": 4,
+        "mean": 603.912,
+        "median": 601.987,
+        "std": 134.831,
+        "min": 441.076,
+        "max": 770.597,
+        "p95": null,
+        "p99": null
+      },
+      "server_reported_embedding_ms": {
+        "n": 100,
+        "mean": 95.765,
+        "median": 96.6,
+        "std": 42.148,
+        "min": 26.8,
+        "max": 223.5,
+        "p95": 171.12,
+        "p99": null
+      },
+      "server_reported_retrieval_ms": {
+        "n": 100,
+        "mean": 70.298,
+        "median": 62.85,
+        "std": 32.746,
+        "min": 46.3,
+        "max": 331.6,
+        "p95": 113.92,
+        "p99": null
+      },
+      "server_reported_generation_ms": {
+        "n": 95,
+        "mean": 513.158,
+        "median": 506.7,
+        "std": 171.568,
+        "min": 149.6,
+        "max": 1370.9,
+        "p95": null,
+        "p99": null
+      },
+      "server_reported_guardrail_groundedness_ms": {
+        "n": 95,
+        "mean": 141.396,
+        "median": 159.1,
+        "std": 89.768,
+        "min": 0.1,
+        "max": 356.5,
+        "p95": null,
+        "p99": null
+      },
+      "server_reported_end_to_end_ms": {
+        "n": 91,
+        "mean": 731.149,
+        "median": 735.0,
+        "std": 213.176,
+        "min": 292.9,
+        "max": 1587.4,
+        "p95": null,
+        "p99": null
+      },
+      "errors": [],
+      "logger_anomalies": {
+        "server_e2e_gt_client_rtt": 0,
+        "generation_reported_on_non_llm_status": 0,
+        "n": 100
+      }
+    },
+    "skipped_phases": "burst (4 concurrent) and voice phases skipped by scope reduction",
+    "server_log_counts": {
+      "429_mentions": 0,
+      "retry_warnings": 0,
+      "tracebacks": 0
+    }
+  },
+  "caveats": [
+    "Client and server on the same laptop (no network hop between them); Groq over public internet.",
+    "Local embedded Qdrant, not Qdrant Cloud.",
+    "Server-reported latency is the P50 over all stage samples within one request (api.py _extract_latency)."
+  ]
+}

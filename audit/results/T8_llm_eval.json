@@ -1,0 +1,161 @@
+{
+  "test_id": "T8_llm_eval",
+  "status": "NEWLY EXECUTED",
+  "environment": {
+    "timestamp": "2026-11-18T21:08:33",
+    "git_commit": "3eb07d3",
+    "python": "3.12.2",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "cpu": "AMD Ryzen 7 7445HS (6C/12T)",
+    "ram_gb": 15.3,
+    "packages": {
+      "torch": "2.13.0",
+      "sentence-transformers": "5.7.0",
+      "transformers": "5.15.0",
+      "qdrant-client": "1.19.0",
+      "groq": "1.6.0",
+      "numpy": "2.5.2",
+      "scipy": "1.18.0",
+      "jiwer": "4.0.0",
+      "flask": "3.1.3"
+    },
+    "device": "api",
+    "torch_threads": 6
+  },
+  "design": "T8 — Real LLM generation evaluation (Groq), production prompt and parameters.\n\nMirrors src/core/orchestrator.py stages 3-6 exactly (system prompt imported from production, same prompt template,\nk=2 retrieval with e5-small, off-topic gate 0.826, streaming), and additionally records finish_reason, token usage\n(incl. reasoning tokens), Groq queue time, rate-limit headers and 429s.\n\nConfigs (interleaved per query, order alternated to cancel drift):\n  A_production : openai/gpt-oss-20b, reasoning_effort=low, max_completion_tokens=150   (api.py)\n  B_cap1024    : openai/gpt-oss-20b, reasoning_effort=low, max_completion_tokens=1024  (diagnostic)\nQueries: 100 random DSV-dev labelled queries (MS MARCO-XI validation), corpus = DSV corpus.\nUsage: .venv/Scripts/python audit/scripts/t8_llm_eval.py\n",
+  "n_queries": 100,
+  "summary": {
+    "A_production": {
+      "n_queries": 100,
+      "n_llm_calls_ok": 99,
+      "class_counts": {
+        "refusal_en": 14,
+        "answered": 53,
+        "answered_truncated": 29,
+        "empty": 2,
+        "refusal_hi": 1,
+        "refused_off_topic": 1
+      },
+      "finish_reason_length_pct": 31.3,
+      "empty_answer_pct": 2.0,
+      "refusal_pct": 15.2,
+      "refusal_pct_when_gold_in_top2": 6.5,
+      "refusal_pct_when_gold_NOT_in_top2": 22.6,
+      "n_gold_in_top2": 46,
+      "n_gold_not_in_top2": 53,
+      "prod_groundedness_pass_pct": 98.0,
+      "token_f1_vs_reference_mean_answered": 0.2815,
+      "ttft_ms": {
+        "n": 99,
+        "mean": 428.793,
+        "median": 388.902,
+        "std": 282.512,
+        "min": 68.362,
+        "max": 1560.494,
+        "p95": null,
+        "p99": null
+      },
+      "total_ms": {
+        "n": 99,
+        "mean": 588.396,
+        "median": 537.717,
+        "std": 297.592,
+        "min": 153.872,
+        "max": 1734.608,
+        "p95": null,
+        "p99": null
+      },
+      "groq_queue_time_ms": {
+        "n": 99,
+        "mean": 386.929,
+        "median": 365.58,
+        "std": 281.02,
+        "min": 46.851,
+        "max": 1509.956,
+        "p95": null,
+        "p99": null
+      },
+      "prompt_tokens_mean": 433.4,
+      "completion_tokens_mean": 105.7,
+      "reasoning_tokens_mean": 46.8,
+      "retries": 0
+    },
+    "B_cap1024": {
+      "n_queries": 100,
+      "n_llm_calls_ok": 99,
+      "class_counts": {
+        "answered": 85,
+        "refusal_en": 14,
+        "refused_off_topic": 1
+      },
+      "finish_reason_length_pct": 0.0,
+      "empty_answer_pct": 0.0,
+      "refusal_pct": 14.1,
+      "refusal_pct_when_gold_in_top2": 4.3,
+      "refusal_pct_when_gold_NOT_in_top2": 22.6,
+      "n_gold_in_top2": 46,
+      "n_gold_not_in_top2": 53,
+      "prod_groundedness_pass_pct": 99.0,
+      "token_f1_vs_reference_mean_answered": 0.2872,
+      "ttft_ms": {
+        "n": 99,
+        "mean": 459.944,
+        "median": 391.446,
+        "std": 332.227,
+        "min": 77.577,
+        "max": 1856.828,
+        "p95": null,
+        "p99": null
+      },
+      "total_ms": {
+        "n": 99,
+        "mean": 632.982,
+        "median": 541.871,
+        "std": 349.05,
+        "min": 180.654,
+        "max": 1914.497,
+        "p95": null,
+        "p99": null
+      },
+      "groq_queue_time_ms": {
+        "n": 99,
+        "mean": 425.38,
+        "median": 365.338,
+        "std": 331.453,
+        "min": 46.49,
+        "max": 1834.92,
+        "p95": null,
+        "p99": null
+      },
+      "prompt_tokens_mean": 433.4,
+      "completion_tokens_mean": 116.6,
+      "reasoning_tokens_mean": 47.2,
+      "retries": 0
+    }
+  },
+  "paired_A_vs_B": {
+    "n_pairs": 99,
+    "truncation_A_vs_B": {
+      "b_wins": 0,
+      "a_wins": 31,
+      "p_value": 9.313225746154785e-10
+    },
+    "total_ms_B_minus_A": {
+      "mean_diff": 44.58631818124559,
+      "ci_low": -32.65229133872028,
+      "ci_high": 125.05310558010397,
+      "p_two_sided": 0.283
+    },
+    "answered_A_vs_B": {
+      "b_wins": 34,
+      "a_wins": 2,
+      "p_value": 1.941225491464138e-08
+    }
+  },
+  "rate_limit_and_error_events": [],
+  "caveats": [
+    "Reference answers are machine-translated MS MARCO answers; token-F1 is indicative only.",
+    "Hindi refusal detection is regex-based (refusal_hi) and may miss paraphrases.",
+    "Latency measured from this laptop over the public internet to Groq."
+  ]
+}

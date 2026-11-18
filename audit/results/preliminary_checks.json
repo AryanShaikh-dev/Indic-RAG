@@ -1,0 +1,39 @@
+{
+  "run_date": "2026-11-18",
+  "status": "NEWLY EXECUTED (not copied from stored results)",
+  "environment": {
+    "hardware": "AMD Ryzen 7 7445HS (6C/12T), 15.3 GB RAM, NVIDIA RTX 3050 Laptop 4GB (not used for these checks)",
+    "os": "Windows 11 Home 10.0.26300",
+    "device": "cpu",
+    "venv": ".venv (uv sync --frozen from uv.lock)",
+    "versions": {"python": "3.12", "torch": "2.13.0 (CPU)", "sentence-transformers": "5.7.0", "transformers": "5.15.0", "qdrant-client": "1.19.0"},
+    "qdrant": "local embedded mode, read-only COPY of qdrant_hindi_benchmark/ (collection hindi_rag_production)"
+  },
+  "dataset": {
+    "source": "benchmark_artifacts/queries.json + eval_map.json (MS MARCO-XI Hindi, 1000-row sample, seed 42)",
+    "unique_passages": 9943, "chunks": 10096, "queries_total": 1000, "queries_with_relevant_label": 627
+  },
+  "checks": {
+    "index_integrity": {"stored_vs_reembedded_cosine_min": 1.0, "n_points_checked": 20, "note": "Production index vectors match current e5-small + 'passage: ' prefix"},
+    "retrieval_reproduction": {
+      "model": "intfloat/multilingual-e5-small", "n_queries": 627,
+      "Hit@1": 29.82, "Hit@2": 46.09, "Hit@3": 58.85, "Hit@5": 73.05, "Hit@10": 85.81, "Hit@20": 89.63, "MRR@5": 45.53,
+      "bootstrap_95ci_1000_resamples": {"Hit@1": [26.3, 33.2], "Hit@5": [69.7, 76.4], "Hit@10": [83.1, 88.7]},
+      "matches_stored_benchmark_results_json": true,
+      "note": "Repo calls these Recall@k; they are hit-rate (success@k). Production passes k=2 chunks to the LLM, so Hit@2 is the operative number."
+    },
+    "off_topic_guardrail_on_answerable_queries": {
+      "top1_score_percentiles": {"p1": 0.8332, "p5": 0.8462, "p50": 0.9016},
+      "false_refusal_rate_pct": {"0.80": 0.0, "0.826": 0.0, "0.85": 6.4},
+      "note": "False-ACCEPT rate on off-topic queries is UNMEASURED (no labelled off-topic set). Stored manual test: 4 off-topic queries scored 0.7924-0.8356; 1 of 4 passed."
+    },
+    "text_normalization": {"passages_not_NFC": 79, "queries_not_NFC": 6, "passages_with_ZWJ_ZWNJ": 4},
+    "e5_token_lengths_3000_passage_sample": {"p50": 90, "p95": 177, "max": 2977, "over_512": 3},
+    "deployment_pins": {
+      "qdrant-client==1.9.1 has QdrantClient.query_points": false,
+      "groq==0.8.0 chat.completions supports reasoning_effort": false,
+      "method": "Downloaded pinned wheels from PyPI and grepped source",
+      "implication": "requirements.txt/Dockerfile build cannot serve a query with current code (not verified by docker build)"
+    }
+  }
+}

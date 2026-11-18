@@ -1,0 +1,69 @@
+{
+  "test_id": "T13_dependency_compat",
+  "status": "NEWLY EXECUTED",
+  "method": "Python 3.10 venv with requirements.txt installed exactly (uv pip install -r requirements.txt); unmodified src/ classes as wired in api.py. Docker build itself NOT executed (Docker daemon not running; C: has 8.4 GB free).",
+  "python": "3.10.11",
+  "platform": "Windows-10-10.0.26300-SP0",
+  "resolved": {
+    "torch": "2.3.1",
+    "sentence-transformers": "3.0.1",
+    "transformers": "4.48.3",
+    "huggingface-hub": "0.25.2",
+    "qdrant-client": "1.9.1",
+    "groq": "0.8.0",
+    "httpx": "0.28.1",
+    "numpy": "1.26.4",
+    "flask": "3.0.3"
+  },
+  "steps": [
+    {
+      "step": "import production modules",
+      "ok": true,
+      "ms": 15237,
+      "detail": "imported"
+    },
+    {
+      "step": "EmbeddingModel load + encode",
+      "ok": true,
+      "ms": 6095,
+      "detail": "[0.05689149349927902, -0.014806455932557583, -0.054531075060367584]"
+    },
+    {
+      "step": "QdrantVectorStore open local collection",
+      "ok": false,
+      "ms": 6,
+      "error_type": "ValidationError",
+      "error": "13 validation errors for CreateCollection\nvectors.VectorParams.memory\n  Extra inputs are not permitted [type=extra_forbidden, input_value=None, input_type=NoneType]\n    For further information visit https://errors.pydantic.dev/2.14/v/extra_forbidden\nvectors.VectorParams.multivector_config\n  Extra in",
+      "where": "\\pydantic\\main.py:280"
+    },
+    {
+      "step": "QdrantVectorStore.query (retrieval)",
+      "ok": false,
+      "ms": 0,
+      "error_type": "KeyError",
+      "error": "'db'",
+      "where": "D:\\Programming\\Indic-RAG\\audit\\scripts\\t13_pinned_deps.py:54"
+    },
+    {
+      "step": "GroqLLMBackend init (gpt-oss-20b, reasoning=low, max_tokens=150)",
+      "ok": true,
+      "ms": 135,
+      "detail": "ok"
+    },
+    {
+      "step": "GroqLLMBackend.generate (real API call)",
+      "ok": false,
+      "ms": 0,
+      "error_type": "TypeError",
+      "error": "Completions.create() got an unexpected keyword argument 'reasoning_effort'",
+      "where": "D:\\Programming\\Indic-RAG\\src\\core\\llm.py:42"
+    },
+    {
+      "step": "GroqSTT.transcribe sample_record.wav (real API call)",
+      "ok": true,
+      "ms": 1027,
+      "detail": " Albert Einstein कौन थे?"
+    }
+  ],
+  "all_passed": false
+}
